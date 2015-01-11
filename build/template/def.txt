@@ -1,0 +1,9 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="$(image)"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY="@(if interactive-tty)-it@(end)"
+fi
+if [[ "$OPTION" = "" ]]; then
+    OPTION="$(option)"
+fi

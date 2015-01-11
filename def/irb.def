@@ -1,0 +1,9 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="ruby:2.2.0"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY="-it"
+fi
+if [[ "$OPTION" = "" ]]; then
+    OPTION=""
+fi

@@ -1,0 +1,81 @@
+#!/bin/bash
+
+DOCKER=docker
+SESSION_ROOT=$(pwd)
+SHARED_DIR="/shared"
+RM=/bin/rm
+
+if [[ "$BECOROOT" = "" ]]; then
+    BECOROOT=`dirname "$0"`
+fi
+
+usage_and_exit () {
+    echo "FIXME"
+    exit 0
+}
+
+## docker の存在確認
+if ! which $DOCKER > /dev/null 2>&1; then
+    echo "$DOCKER must be installed."
+    exit 1
+fi
+
+## 引数のパース
+while getopts c:s:hi OPT; do
+    case $OPT in
+        c)
+            CMD=$OPTARG
+            ;;
+        s)
+            SESSION_ROOT=$OPTARG
+            if [[ ! -d $SESSION_ROOT ]]; then
+                echo "does not exists: $SESSION_ROOT"
+                exit 1
+            fi
+            ;;
+        i)
+            INTERACTIVE_TTY="-it"
+            ;;
+        h)
+            usage_and_exit
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+## 実行してようとしているコマンド毎の定義の読み込み
+if [[ "$CMD" = "" ]]; then
+    CMD=$1
+fi
+DEF_FILE=$BECOROOT/def/${CMD}.def
+if [[ ! -e $DEF_FILE ]]; then
+    echo "$CMD is not supported"
+    exit 1
+fi
+. $DEF_FILE
+
+## セッションの確認
+IMAGE_NAME=$(echo "$IMAGE" | sed 's!/!_!g' | cut -d":" -f1)
+SESSION_FILE="$SESSION_ROOT/.beco_${IMAGE_NAME}_session"
+if [[ -e $SESSION_FILE ]]; then
+    SESSION_CONTAINER=$(cat $SESSION_FILE)
+    $DOCKER ps --no-trunc -q | grep $SESSION_CONTAINER > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        SESSION_CONTAINER=""
+        $RM -rf $SESSION_FILE
+    fi
+fi
+## セッションがなければ作る
+if [[ ! -e $SESSION_FILE ]]; then
+    SESSION_CONTAINER=$($DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE ping localhost)
+    echo -n $SESSION_CONTAINER > $SESSION_FILE
+fi
+
+#if [[ "$SESSION_CONTAINER" = "" ]]; then
+#    RUN_CMD="$DOCKER run $OPTION -v $(pwd):$SHARED_DIR:rw $INTERACTIVE_TTY -w $SHARED_DIR $IMAGE $@"
+#else
+#    RUN_CMD="$DOCKER exec $INTERACTIVE_TTY $SESSION_CONTAINER $@"
+#fi
+#$RUN_CMD
+$DOCKER exec $INTERACTIVE_TTY $SESSION_CONTAINER $@
+exit $?

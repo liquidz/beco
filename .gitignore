@@ -1,0 +1,10 @@
+/build/target
+/build/classes
+/build/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/build/.lein-*
+/build/.nrepl-port
+.beco*

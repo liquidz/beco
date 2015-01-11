@@ -1,0 +1,9 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="golang:1.3.3"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$OPTION" = "" ]]; then
+    OPTION=""
+fi
