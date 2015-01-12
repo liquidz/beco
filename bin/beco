@@ -8,9 +8,32 @@ RM=/bin/rm
 if [[ "$BECOROOT" = "" ]]; then
     BECOROOT=`dirname "$0"`
 fi
+. $BECOROOT/def/version.def
 
 usage_and_exit () {
-    echo "FIXME"
+    cat <<EOT
+
+beco ver $VERSION
+
+Usage)
+  beco COMMAND (ARGS ...)
+Option)
+  -i : Enables interactive tty
+  -c : Specify command
+  -h : Show this help
+  -v : Show version
+Example)
+  beco go verion
+  beco -c go go version
+  beco -c go hostname
+  beco -i -c go bash
+
+EOT
+    exit 0
+}
+
+version_and_exit () {
+    echo "beco ver $VERSION"
     exit 0
 }
 
@@ -21,7 +44,7 @@ if ! which $DOCKER > /dev/null 2>&1; then
 fi
 
 ## 引数のパース
-while getopts c:s:hi OPT; do
+while getopts c:s:hiv OPT; do
     case $OPT in
         c)
             CMD=$OPTARG
@@ -35,6 +58,9 @@ while getopts c:s:hi OPT; do
             ;;
         i)
             INTERACTIVE_TTY="-it"
+            ;;
+        v)
+            version_and_exit
             ;;
         h)
             usage_and_exit
@@ -54,8 +80,12 @@ if [[ ! -e $DEF_FILE ]]; then
 fi
 . $DEF_FILE
 
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND="ping localhost"
+fi
+
 ## セッションの確認
-IMAGE_NAME=$(echo "$IMAGE" | sed 's!/!_!g' | cut -d":" -f1)
+IMAGE_NAME=$(echo "$IMAGE" | sed 's![/:]!_!g')
 SESSION_FILE="$SESSION_ROOT/.beco_${IMAGE_NAME}_session"
 if [[ -e $SESSION_FILE ]]; then
     SESSION_CONTAINER=$(cat $SESSION_FILE)
@@ -67,7 +97,7 @@ if [[ -e $SESSION_FILE ]]; then
 fi
 ## セッションがなければ作る
 if [[ ! -e $SESSION_FILE ]]; then
-    SESSION_CONTAINER=$($DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE ping localhost)
+    SESSION_CONTAINER=$($DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND)
     echo -n $SESSION_CONTAINER > $SESSION_FILE
 fi
 

@@ -1,5 +1,5 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="uochan/heroku"
+    IMAGE="uochan/hubot"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""
@@ -8,5 +8,5 @@ if [[ "$OPTION" = "" ]]; then
     OPTION=""
 fi
 if [[ "$COMMAND" = "" ]]; then
-    COMMAND=""
+    COMMAND="redis-server"
 fi

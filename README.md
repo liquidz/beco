@@ -2,6 +2,8 @@
 
 BENRI(Convenient) Commands
 
+current version: 0.0.1
+
 ## Install
 
  * Clone repository and link bin/beco to your excutable path.
@@ -42,12 +44,49 @@ beco gem -v
 beco irb -v
 ```
 
+### lein
+ * Image: [clojure:lein-2.5.0](https://registry.hub.docker.com/_/clojure/)
+ * Example
+```
+beco lein version
+beco -i lein repl
+```
+
+### php
+ * Image: [php:5.6](https://registry.hub.docker.com/_/php/)
+ * Example
+```
+FIXME
+```
+
+### node
+ * Image: [node:0.10](https://registry.hub.docker.com/_/node/)
+ * Example
+```
+beco node -v
+```
+
+### npm
+ * Image: [node:0.10](https://registry.hub.docker.com/_/node/)
+ * Example
+```
+beco npm -v
+```
+
 ### heroku
  * Image: [uochan/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example
 ```
 beco -c heroku /heroku_login.sh
 beco heroku apps
+```
+
+### hubot
+ * Image: [uochan/hubot](https://github.com/liquidz/docker-hubot)
+ * Example
+```
+beco -c hubot npm install
+beco -i -c hubot bin/hubot
 ```
 
 

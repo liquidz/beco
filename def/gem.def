@@ -7,3 +7,6 @@ fi
 if [[ "$OPTION" = "" ]]; then
     OPTION=""
 fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND=""
+fi

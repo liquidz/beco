@@ -2,6 +2,8 @@
 
 BENRI(Convenient) Commands
 
+current version: $(version)
+
 ## Install
 
  * Clone repository and link bin/beco to your excutable path.
@@ -14,7 +16,7 @@ export BECOROOT=/path/to/beco
 
 ## Commands
 
-@(for defs)
+@(for commands)
 ### $(name)
  * Image: [$(image)]($(url))
  * Example

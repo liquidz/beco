@@ -1,5 +1,5 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="uochan/heroku"
+    IMAGE="clojure:lein-2.5.0"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""

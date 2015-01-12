@@ -1,33 +1,55 @@
 {
- ;; official language stack
- :go   {:image "golang:1.3.3"
-        :url "https://registry.hub.docker.com/_/golang/"
-        :example "beco go version"
-        }
- :ruby {:image "ruby:2.2.0"
-        :url "https://registry.hub.docker.com/_/ruby/"
-        :example "beco ruby -v"
-        }
- :gem  {:image "ruby:2.2.0"
-        :url "https://registry.hub.docker.com/_/ruby/"
-        :example "beco gem -v"
-        }
- :irb  {:image "ruby:2.2.0"
-        :interactive-tty true
-        :url "https://registry.hub.docker.com/_/ruby/"
-        :example "beco irb -v"
-        }
- ;:lein {:image "clojure:latest"
- ;       :sub-command [{:cmd "repl"
- ;                      :interactive-tty true
- ;                      }]}
- ;:php  {:image "php:latest"}
- ;:node {:image "node:latest"}
- ;:npm  {:image "node:latest"}
+ :version "0.0.1"
+ :commands [
+            ;; official language stack
+            {:name "go"
+             :image "golang:1.3.3"
+             :url "https://registry.hub.docker.com/_/golang/"
+             :example "beco go version"}
 
- ;; third-party
- :heroku {:image "uochan/heroku"
-          :url "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
-          :example "beco -c heroku /heroku_login.sh\nbeco heroku apps"
-          }
+            {:name "ruby"
+             :image "ruby:2.2.0"
+             :url "https://registry.hub.docker.com/_/ruby/"
+             :example "beco ruby -v"}
+            {:name "gem"
+             :image "ruby:2.2.0"
+             :url "https://registry.hub.docker.com/_/ruby/"
+             :example "beco gem -v"}
+            {:name "irb"
+             :image "ruby:2.2.0"
+             :interactive-tty true
+             :url "https://registry.hub.docker.com/_/ruby/"
+             :example "beco irb -v"}
+
+            {:name "lein"
+             :image "clojure:lein-2.5.0"
+             :url "https://registry.hub.docker.com/_/clojure/"
+             :example "beco lein version\nbeco -i lein repl"}
+
+            {:name "php"
+             :image "php:5.6"
+             :url "https://registry.hub.docker.com/_/php/"
+             :example "FIXME"}
+
+            {:name "node"
+             :image "node:0.10"
+             :url "https://registry.hub.docker.com/_/node/"
+             :example "beco node -v"}
+            {:name "npm"
+             :image "node:0.10"
+             :url "https://registry.hub.docker.com/_/node/"
+             :example "beco npm -v"}
+
+            ;; third-party
+            {:name "heroku"
+             :image "uochan/heroku"
+             :url "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
+             :example "beco -c heroku /heroku_login.sh\nbeco heroku apps"}
+
+            {:name "hubot"
+             :image "uochan/hubot"
+             :url "https://github.com/liquidz/docker-hubot"
+             :example "beco -c hubot npm install\nbeco -i -c hubot bin/hubot"
+             :command "redis-server"}
+            ]
  }
