@@ -1,4 +1,5 @@
 # beco
+[![Build Status](https://travis-ci.org/liquidz/beco.svg?branch=master)](https://travis-ci.org/liquidz/beco)
 
 BENRI(Convenient) Commands
 
