@@ -1,0 +1,12 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="uochan/bats"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$OPTION" = "" ]]; then
+    OPTION=""
+fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND=""
+fi

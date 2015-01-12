@@ -20,7 +20,9 @@ Usage)
 Option)
   -i : Enables interactive tty
   -c : Specify command
+  -s : Specify path to store session file
   -h : Show this help
+  -d : Dry run mode
   -v : Show version
 Example)
   beco go verion
@@ -38,13 +40,15 @@ version_and_exit () {
 }
 
 ## docker の存在確認
-if ! which $DOCKER > /dev/null 2>&1; then
-    echo "$DOCKER must be installed."
-    exit 1
+if [[ "$IGNORE_TO_CHECK_DOCKER" = "" ]]; then
+    if ! which $DOCKER > /dev/null 2>&1; then
+        echo "$DOCKER must be installed."
+        exit 1
+    fi
 fi
 
 ## 引数のパース
-while getopts c:s:hiv OPT; do
+while getopts c:s:hivd OPT; do
     case $OPT in
         c)
             CMD=$OPTARG
@@ -61,6 +65,9 @@ while getopts c:s:hiv OPT; do
             ;;
         v)
             version_and_exit
+            ;;
+        d)
+            DRYRUN=1
             ;;
         h)
             usage_and_exit
@@ -85,27 +92,34 @@ if [[ "$COMMAND" = "" ]]; then
 fi
 
 ## セッションの確認
-IMAGE_NAME=$(echo "$IMAGE" | sed 's![/:]!_!g')
-SESSION_FILE="$SESSION_ROOT/.beco_${IMAGE_NAME}_session"
-if [[ -e $SESSION_FILE ]]; then
-    SESSION_CONTAINER=$(cat $SESSION_FILE)
-    $DOCKER ps --no-trunc -q | grep $SESSION_CONTAINER > /dev/null 2>&1
-    if [[ $? -ne 0 ]]; then
-        SESSION_CONTAINER=""
-        $RM -rf $SESSION_FILE
+if ! test $DRYRUN; then
+    IMAGE_NAME=$(echo "$IMAGE" | sed 's![/:]!_!g')
+    SESSION_FILE="$SESSION_ROOT/.beco_${IMAGE_NAME}_session"
+    if [[ -e $SESSION_FILE ]]; then
+        SESSION_CONTAINER=$(cat $SESSION_FILE)
+        $DOCKER ps --no-trunc -q | grep $SESSION_CONTAINER > /dev/null 2>&1
+        if [[ $? -ne 0 ]]; then
+            SESSION_CONTAINER=""
+            $RM -rf $SESSION_FILE
+        fi
     fi
 fi
 ## セッションがなければ作る
 if [[ ! -e $SESSION_FILE ]]; then
-    SESSION_CONTAINER=$($DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND)
-    echo -n $SESSION_CONTAINER > $SESSION_FILE
+    RUN_CMD="$DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND"
+    if test $DRYRUN; then
+        SESSION_CONTAINER="TEST_CONTAINER"
+        echo $RUN_CMD
+    else
+        SESSION_CONTAINER=$($RUN_CMD)
+        echo -n $SESSION_CONTAINER > $SESSION_FILE
+    fi
 fi
 
-#if [[ "$SESSION_CONTAINER" = "" ]]; then
-#    RUN_CMD="$DOCKER run $OPTION -v $(pwd):$SHARED_DIR:rw $INTERACTIVE_TTY -w $SHARED_DIR $IMAGE $@"
-#else
-#    RUN_CMD="$DOCKER exec $INTERACTIVE_TTY $SESSION_CONTAINER $@"
-#fi
-#$RUN_CMD
-$DOCKER exec $INTERACTIVE_TTY $SESSION_CONTAINER $@
+RUN_CMD="$DOCKER exec $INTERACTIVE_TTY $SESSION_CONTAINER $@"
+if test $DRYRUN; then
+    echo $RUN_CMD
+else
+    $RUN_CMD
+fi
 exit $?

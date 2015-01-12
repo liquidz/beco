@@ -4,6 +4,10 @@ BENRI(Convenient) Commands
 
 current version: 0.0.1
 
+## Requirements
+
+ * Docker 1.3+
+
 ## Install
 
  * Clone repository and link bin/beco to your excutable path.
@@ -87,6 +91,13 @@ beco heroku apps
 ```
 beco -c hubot npm install
 beco -i -c hubot bin/hubot
+```
+
+### bats
+ * Image: [uochan/bats](https://github.com/liquidz/docker-bats)
+ * Example
+```
+beco bats -v
 ```
 
 

@@ -51,5 +51,10 @@
              :url "https://github.com/liquidz/docker-hubot"
              :example "beco -c hubot npm install\nbeco -i -c hubot bin/hubot"
              :command "redis-server"}
+
+            {:name "bats"
+             :image "uochan/bats"
+             :url "https://github.com/liquidz/docker-bats"
+             :example "beco bats -v"}
             ]
  }

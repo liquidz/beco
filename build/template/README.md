@@ -4,6 +4,10 @@ BENRI(Convenient) Commands
 
 current version: $(version)
 
+## Requirements
+
+ * Docker 1.3+
+
 ## Install
 
  * Clone repository and link bin/beco to your excutable path.
