@@ -25,8 +25,8 @@ export BECOROOT=/path/to/beco
 ### $(name)
  * Image: [$(image)]($(url))
  * Example
-```
-$(example)
+```sh
+$(raw example)
 ```
 
 @(end)

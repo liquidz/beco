@@ -24,35 +24,35 @@ export BECOROOT=/path/to/beco
 ### go
  * Image: [golang:1.3.3](https://registry.hub.docker.com/_/golang/)
  * Example
-```
+```sh
 beco go version
 ```
 
 ### ruby
  * Image: [ruby:2.2.0](https://registry.hub.docker.com/_/ruby/)
  * Example
-```
+```sh
 beco ruby -v
 ```
 
 ### gem
  * Image: [ruby:2.2.0](https://registry.hub.docker.com/_/ruby/)
  * Example
-```
+```sh
 beco gem -v
 ```
 
 ### irb
  * Image: [ruby:2.2.0](https://registry.hub.docker.com/_/ruby/)
  * Example
-```
+```sh
 beco irb -v
 ```
 
 ### lein
  * Image: [clojure:lein-2.5.0](https://registry.hub.docker.com/_/clojure/)
  * Example
-```
+```sh
 beco lein version
 beco -i lein repl
 ```
@@ -60,28 +60,32 @@ beco -i lein repl
 ### php
  * Image: [php:5.6](https://registry.hub.docker.com/_/php/)
  * Example
-```
+```sh
 FIXME
 ```
 
 ### node
  * Image: [node:0.10](https://registry.hub.docker.com/_/node/)
  * Example
-```
+```sh
 beco node -v
 ```
 
 ### npm
  * Image: [node:0.10](https://registry.hub.docker.com/_/node/)
  * Example
-```
+```sh
 beco npm -v
 ```
 
 ### heroku
- * Image: [uochan/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
+ * Image: [beco/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example
-```
+```sh
+#setup
+echo "FROM uochan/heroku-toolbelt" > Dockerfile
+docker build --rm -t beco/heroku .
+
 beco -i -c heroku /heroku_login.sh
 beco heroku apps
 ```
@@ -89,7 +93,7 @@ beco heroku apps
 ### hubot
  * Image: [uochan/hubot](https://github.com/liquidz/docker-hubot)
  * Example
-```
+```sh
 beco -c hubot npm install
 beco -i -c hubot bin/hubot
 ```
@@ -97,7 +101,7 @@ beco -i -c hubot bin/hubot
 ### bats
  * Image: [uochan/bats](https://github.com/liquidz/docker-bats)
  * Example
-```
+```sh
 beco bats -v
 ```
 

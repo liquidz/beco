@@ -42,9 +42,9 @@
 
             ;; third-party
             {:name "heroku"
-             :image "uochan/heroku"
+             :image "beco/heroku"
              :url "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
-             :example "beco -c heroku /heroku_login.sh\nbeco heroku apps"}
+             :example "#setup\necho \"FROM uochan/heroku-toolbelt\" > Dockerfile\ndocker build --rm -t beco/heroku .\n\nbeco -i -c heroku /heroku_login.sh\nbeco heroku apps"}
 
             {:name "hubot"
              :image "uochan/hubot"
