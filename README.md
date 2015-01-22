@@ -82,7 +82,7 @@ beco npm -v
  * Image: [uochan/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example
 ```
-beco -c heroku /heroku_login.sh
+beco -i -c heroku /heroku_login.sh
 beco heroku apps
 ```
 
