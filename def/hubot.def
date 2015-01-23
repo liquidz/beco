@@ -4,8 +4,8 @@ fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""
 fi
-if [[ "$OPTION" = "" ]]; then
-    OPTION=""
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH=""
 fi
 if [[ "$COMMAND" = "" ]]; then
     COMMAND="redis-server"

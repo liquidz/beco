@@ -3,6 +3,7 @@
 DOCKER=docker
 SESSION_ROOT=$(pwd)
 SHARED_DIR="/shared"
+KILL_FLAG=0
 RM=/bin/rm
 
 if [[ "$BECOROOT" = "" ]]; then
@@ -21,6 +22,8 @@ Option)
   -i : Enables interactive tty
   -c : Specify command
   -s : Specify path to store session file
+  -k : Kill specified command's session
+  -l : Show sessions
   -h : Show this help
   -d : Dry run mode
   -v : Show version
@@ -29,8 +32,27 @@ Example)
   beco -c go go version
   beco -c go hostname
   beco -i -c go bash
+  beco -k go
 
 EOT
+    exit 0
+}
+
+show_sessions_and_exit () {
+    exists=0
+    for FILE in $(cd $SESSION_ROOT && ls -1 .beco_*_session); do
+        SESSION_FILE="$SESSION_ROOT/$FILE"
+        SESSION_CONTAINER=$(cat $SESSION_FILE)
+        $DOCKER ps --no-trunc -q | grep $SESSION_CONTAINER > /dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+            exists=1
+            echo "$FILE : $SESSION_CONTAINER"
+        fi
+    done
+
+    if [[ $exists -ne 1 ]]; then
+        echo "There are no sessions in $SESSION_ROOT"
+    fi
     exit 0
 }
 
@@ -48,7 +70,7 @@ if [[ "$IGNORE_TO_CHECK_DOCKER" = "" ]]; then
 fi
 
 ## 引数のパース
-while getopts c:s:hivd OPT; do
+while getopts c:s:k:hivdl OPT; do
     case $OPT in
         c)
             CMD=$OPTARG
@@ -60,8 +82,15 @@ while getopts c:s:hivd OPT; do
                 exit 1
             fi
             ;;
+        k)
+            CMD=$OPTARG
+            KILL_FLAG=1
+            ;;
         i)
             INTERACTIVE_TTY="-it"
+            ;;
+        l)
+            show_sessions_and_exit
             ;;
         v)
             version_and_exit
@@ -104,9 +133,20 @@ if ! test $DRYRUN; then
         fi
     fi
 fi
+
+## もし KILL_FLAG が立っていたらセッションを削除して終了
+if [[ $KILL_FLAG -eq 1 ]]; then
+    if [[ -e $SESSION_FILE ]]; then
+        $DOCKER rm -f $SESSION_CONTAINER
+    else
+        echo "There are no session for $IMAGE"
+    fi
+    exit 0
+fi
+
 ## セッションがなければ作る
 if [[ ! -e $SESSION_FILE ]]; then
-    RUN_CMD="$DOCKER run -d -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND"
+    RUN_CMD="$DOCKER run -d $PUBLISH -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND"
     if test $DRYRUN; then
         SESSION_CONTAINER="TEST_CONTAINER"
         echo $RUN_CMD

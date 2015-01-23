@@ -40,6 +40,13 @@
              :url "https://registry.hub.docker.com/_/node/"
              :example "beco npm -v"}
 
+            {:name "redis"
+             :image "redis:2"
+             :url "https://registry.hub.docker.com/_/redis/"
+             :publish [6379]
+             :example "beco -i -c redis redis-cli"
+             :command "redis-server"}
+
             ;; third-party
             {:name "heroku"
              :image "beco/heroku"

@@ -78,6 +78,13 @@ beco node -v
 beco npm -v
 ```
 
+### redis
+ * Image: [redis:2](https://registry.hub.docker.com/_/redis/)
+ * Example
+```sh
+beco -i -c redis redis-cli
+```
+
 ### heroku
  * Image: [beco/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example

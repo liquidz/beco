@@ -1,12 +1,12 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="ruby:2.2.0"
+    IMAGE="redis:2"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
-    INTERACTIVE_TTY="-it"
+    INTERACTIVE_TTY=""
 fi
 if [[ "$PUBLISH" = "" ]]; then
-    PUBLISH=""
+    PUBLISH="-p 6379:6379 "
 fi
 if [[ "$COMMAND" = "" ]]; then
-    COMMAND=""
+    COMMAND="redis-server"
 fi

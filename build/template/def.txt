@@ -4,8 +4,8 @@ fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY="@(if interactive-tty)-it@(end)"
 fi
-if [[ "$OPTION" = "" ]]; then
-    OPTION="$(option)"
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH="@(for publish)-p $(.):$(.) @(end)"
 fi
 if [[ "$COMMAND" = "" ]]; then
     COMMAND="$(command)"
