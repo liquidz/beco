@@ -85,6 +85,13 @@ beco npm -v
 beco -i -c redis redis-cli
 ```
 
+### elasticsearch
+ * Image: [elasticsearch:1](https://registry.hub.docker.com/_/elasticsearch/)
+ * Example
+```sh
+fixme
+```
+
 ### heroku
  * Image: [beco/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example
