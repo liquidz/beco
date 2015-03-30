@@ -89,7 +89,7 @@ beco -i -c redis redis-cli
  * Image: [elasticsearch:1](https://registry.hub.docker.com/_/elasticsearch/)
  * Example
 ```sh
-fixme
+beco elasticsearch -v
 ```
 
 ### heroku
@@ -117,6 +117,13 @@ beco -i -c hubot bin/hubot
  * Example
 ```sh
 beco bats -v
+```
+
+### ansible-playbook
+ * Image: [uochan/ansible](https://github.com/liquidz/dockerfile/tree/master/beco/ansible)
+ * Example
+```sh
+beco ansible-playbook --version
 ```
 
 

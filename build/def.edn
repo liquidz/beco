@@ -71,5 +71,10 @@
              :image "uochan/bats"
              :url "https://github.com/liquidz/docker-bats"
              :example "beco bats -v"}
+
+            {:name "ansible-playbook"
+             :image "uochan/ansible"
+             :url "https://github.com/liquidz/dockerfile/tree/master/beco/ansible"
+             :example "beco ansible-playbook --version"}
             ]
  }
