@@ -126,6 +126,13 @@ beco bats -v
 beco ansible-playbook --version
 ```
 
+### vint
+ * Image: [uochan/vint](https://github.com/liquidz/docker-vint)
+ * Example
+```sh
+beco vint -v
+```
+
 
 
 ## License

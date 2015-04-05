@@ -1,0 +1,12 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="uochan/vint"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH=""
+fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND=""
+fi

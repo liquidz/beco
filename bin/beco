@@ -61,6 +61,11 @@ version_and_exit () {
     exit 0
 }
 
+## 引数がなければエラー
+if [[ $# -lt 1 ]]; then
+    usage_and_exit
+fi
+
 ## docker の存在確認
 if [[ "$IGNORE_TO_CHECK_DOCKER" = "" ]]; then
     if ! which $DOCKER > /dev/null 2>&1; then
