@@ -8,7 +8,8 @@ _beco() {
         "-h[Show this help]" \
         "-d[Dry run mode]" \
         "-v[Show version]" \
-        "*: :__beco_commands"
+        "1: :__beco_commands" \
+        "*: :_files" \
 }
 
 __beco_commands() {
