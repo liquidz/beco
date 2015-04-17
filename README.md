@@ -133,6 +133,13 @@ beco ansible-playbook --version
 beco vint -v
 ```
 
+### kibana
+ * Image: [uochan/kibana](https://github.com/liquidz/docker-kibana)
+ * Example
+```sh
+beco kibana
+```
+
 
 
 ## License

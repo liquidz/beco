@@ -81,5 +81,17 @@
              :image "uochan/vint"
              :url "https://github.com/liquidz/docker-vint"
              :example "beco vint -v"}
+
+            ;{:name "themis"
+            ; :image "uochan/circleci_themis"
+            ; :url "FIXME"
+            ; :example "beco themis -h"}
+
+            {:name "kibana"
+             :image "uochan/kibana"
+             :url "https://github.com/liquidz/docker-kibana"
+             :example "beco kibana"
+             :publish [9200 5601]
+             :command "/usr/share/elasticsearch/bin/elasticsearch"}
             ]
  }

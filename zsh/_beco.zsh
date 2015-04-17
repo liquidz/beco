@@ -30,6 +30,7 @@ __beco_commands() {
             'bats' \
             'ansible-playbook' \
             'vint' \
+            'kibana' \
 
 }
 
