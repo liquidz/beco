@@ -1,3 +1,5 @@
+#compdef _beco beco
+
 _beco() {
     _arguments \
         "-i[Enables interactive tty]" \
@@ -33,5 +35,3 @@ __beco_commands() {
             'kibana' \
 
 }
-
-compdef _beco beco
