@@ -10,7 +10,7 @@
 (def ZSH_COMP_TEMPLATE_FILE "template/_beco.zsh")
 (def DEF_OUTPUT             "../def/$(name).def")
 (def README_OUTPUT          "../README.md")
-(def ZSH_COMP_OUTPUT        "../zsh/_beco.zsh")
+(def ZSH_COMP_OUTPUT        "../zsh/_beco")
 
 (defn -main
   []

@@ -1,3 +1,5 @@
+#compdef _beco beco
+
 _beco() {
     _arguments \
         "-i[Enables interactive tty]" \
@@ -19,5 +21,3 @@ __beco_commands() {
             '$(name)' \
 @(end)
 }
-
-compdef _beco beco
