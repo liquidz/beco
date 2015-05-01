@@ -50,6 +50,19 @@ setup () {
     [[ "$SECOND" =~ "bar baz" ]]
 }
 
-# mount_position 指定
-# no-command 指定
+@test "no-command option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env NO_COMMAND="true" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ "ping localhost" ]]
+    [[ ! "$SECOND" =~ "ping localhost" ]]
+}
+
+@test "mount-position option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env MOUNT_POSITION="/bar/baz" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ ":/shared" ]]
+    [[ "$SECOND" =~ ":/bar/baz" ]]
+}
 
