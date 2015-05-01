@@ -1,11 +1,11 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="elasticsearch:1"
+    IMAGE="f99aq8ove/gitbucket"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""
 fi
 if [[ "$PUBLISH" = "" ]]; then
-    PUBLISH="-p 9200:9200 "
+    PUBLISH="-p 8080:8080 -p 29418:29418 "
 fi
 if [[ "$COMMAND" = "" ]]; then
     COMMAND=""
@@ -14,5 +14,5 @@ if [[ "$NO_COMMAND" = "" ]]; then
     NO_COMMAND="true"
 fi
 if [[ "$MOUNT_POSITION" = "" ]]; then
-    MOUNT_POSITION=""
+    MOUNT_POSITION="/gitbucket"
 fi
