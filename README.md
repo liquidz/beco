@@ -140,10 +140,10 @@ beco kibana
 ```
 
 ### gitbucket
- * Image: [f99aq8ove/gitbucket]()
+ * Image: [f99aq8ove/gitbucket](https://github.com/f99aq8ove/docker-gitbucket)
  * Example
 ```sh
-
+beco gitbucket
 ```
 
 

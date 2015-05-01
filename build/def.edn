@@ -96,6 +96,8 @@
 
             {:name "gitbucket"
              :image "f99aq8ove/gitbucket"
+             :url "https://github.com/f99aq8ove/docker-gitbucket"
+             :example "beco gitbucket"
              :publish [8080 29418]
              :no-command true
              :mount-position "/gitbucket"}
