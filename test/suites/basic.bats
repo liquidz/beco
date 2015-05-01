@@ -40,13 +40,15 @@ setup () {
     [[ "$SECOND" =~ "$PUBLISH" ]]
 }
 
-#@test "command option" {
-#    FIRST=$($BECO test foo | grep "docker run" | grep "ping localhost")
-#    SECOND=$(env COMMAND="bar baz" $BECO test foo | grep "docker run" | grep "bar baz")
-#    echo "first=[$FIRST]"
-#    echo "second=[$SECOND]"
-#    [ "foo" = "bar" ]
-#}
+@test "command option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env COMMAND="bar baz" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ "ping localhost" ]]
+    [[ ! "$FIRST" =~ "bar baz" ]]
+    [[ ! "$SECOND" =~ "ping localhost" ]]
+    [[ "$SECOND" =~ "bar baz" ]]
+}
 
 # mount_position 指定
 # no-command 指定
