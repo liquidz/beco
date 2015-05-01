@@ -19,7 +19,7 @@ setup () {
     [ $? -eq 0 ]
 }
 
-@test "interactive-tty" {
+@test "interactive-tty option" {
     FIRST=$(env INTERACTIVE_TTY="" $BECO test foo \
         | grep "docker exec" | cut -d" " -f3)
     SECOND=$(env INTERACTIVE_TTY="-it" $BECO test foo \
@@ -29,7 +29,23 @@ setup () {
     [ "$SECOND" = "-it" ]
 }
 
+@test "publish option" {
+    PUBLISH="-p 80:80"
+
+    FIRST=$($BECO test foo \
+        | grep "docker run" \
+        | cut -d" " -f4-5)
+    SECOND=$(env PUBLISH="$PUBLISH " $BECO test foo \
+        | grep "docker run" \
+        | cut -d" " -f4-5)
+
+    echo "first=[$FIRST]"
+    echo "second=[$SECOND]"
+
+    [ ! "$FIRST" = "$PUBLISH" ]
+    [ "$SECOND" = "$PUBLISH" ]
+}
+
 # mount_position 指定
 # no-command 指定
-# publish
 
