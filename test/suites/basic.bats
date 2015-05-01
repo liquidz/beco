@@ -9,42 +9,44 @@ setup () {
     FIRST=$($BECO test foo | grep "docker run")
     SECOND=$($BECO test foo | grep "docker exec")
 
-    [ ! "$FIRST" = "" ]
-    [ ! "$SECOND" = "" ]
+    [[ ! "$FIRST" = "" ]]
+    [[ ! "$SECOND" = "" ]]
 }
 
 @test "image should be specified" {
     RES=$($BECO test foo | grep "docker run")
-    echo $RES | grep "test/image:latest" > /dev/null 2>&1
-    [ $? -eq 0 ]
+    [[ "$RES" =~ "test/image:latest" ]]
 }
 
 @test "interactive-tty option" {
     FIRST=$(env INTERACTIVE_TTY="" $BECO test foo \
-        | grep "docker exec" | cut -d" " -f3)
+        | grep "docker exec")
     SECOND=$(env INTERACTIVE_TTY="-it" $BECO test foo \
-        | grep "docker exec" | cut -d" " -f3)
+        | grep "docker exec")
 
-    [ ! "$FIRST" = "-it" ]
-    [ "$SECOND" = "-it" ]
+    [[ ! "$FIRST" =~ "-it" ]]
+    [[ "$SECOND" =~ "-it" ]]
 }
 
 @test "publish option" {
     PUBLISH="-p 80:80"
 
     FIRST=$($BECO test foo \
-        | grep "docker run" \
-        | cut -d" " -f4-5)
+        | grep "docker run")
     SECOND=$(env PUBLISH="$PUBLISH " $BECO test foo \
-        | grep "docker run" \
-        | cut -d" " -f4-5)
+        | grep "docker run")
 
-    echo "first=[$FIRST]"
-    echo "second=[$SECOND]"
-
-    [ ! "$FIRST" = "$PUBLISH" ]
-    [ "$SECOND" = "$PUBLISH" ]
+    [[ ! "$FIRST" =~ "$PUBLISH" ]]
+    [[ "$SECOND" =~ "$PUBLISH" ]]
 }
+
+#@test "command option" {
+#    FIRST=$($BECO test foo | grep "docker run" | grep "ping localhost")
+#    SECOND=$(env COMMAND="bar baz" $BECO test foo | grep "docker run" | grep "bar baz")
+#    echo "first=[$FIRST]"
+#    echo "second=[$SECOND]"
+#    [ "foo" = "bar" ]
+#}
 
 # mount_position 指定
 # no-command 指定
