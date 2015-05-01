@@ -5,28 +5,64 @@ setup () {
     export_default_env
 }
 
-## -i
-## -c
-## -s
-## commnd def
-## 
-
-#docker run -d -v /Users/uochan/src/github.com/liquidz/beco:/shared:rw -w /shared uochan/bats ping localhost
-#docker exec TEST_CONTAINER bats -v
-
 @test "docker run and exec should be executed" {
-    RES=$($BECO test foo)
-    FIRST=$(echo $RES | grep "docker run")
-    SECOND=$(echo $RES | grep "docker exec")
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$($BECO test foo | grep "docker exec")
 
-    [ ! "$FIRST" = "" ]
-    [ ! "$SECOND" = "" ]
+    [[ ! "$FIRST" = "" ]]
+    [[ ! "$SECOND" = "" ]]
 }
 
 @test "image should be specified" {
-    RES=$($BECO test foo)
-    FIRST=$(echo $RES | grep "docker run")
-
-    echo $FIRST | grep "test/image:latest" > /dev/null 2>&1
-    [ $? -eq 0 ]
+    RES=$($BECO test foo | grep "docker run")
+    [[ "$RES" =~ "test/image:latest" ]]
 }
+
+@test "interactive-tty option" {
+    FIRST=$(env INTERACTIVE_TTY="" $BECO test foo \
+        | grep "docker exec")
+    SECOND=$(env INTERACTIVE_TTY="-it" $BECO test foo \
+        | grep "docker exec")
+
+    [[ ! "$FIRST" =~ "-it" ]]
+    [[ "$SECOND" =~ "-it" ]]
+}
+
+@test "publish option" {
+    PUBLISH="-p 80:80"
+
+    FIRST=$($BECO test foo \
+        | grep "docker run")
+    SECOND=$(env PUBLISH="$PUBLISH " $BECO test foo \
+        | grep "docker run")
+
+    [[ ! "$FIRST" =~ "$PUBLISH" ]]
+    [[ "$SECOND" =~ "$PUBLISH" ]]
+}
+
+@test "command option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env COMMAND="bar baz" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ "ping localhost" ]]
+    [[ ! "$FIRST" =~ "bar baz" ]]
+    [[ ! "$SECOND" =~ "ping localhost" ]]
+    [[ "$SECOND" =~ "bar baz" ]]
+}
+
+@test "no-command option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env NO_COMMAND="true" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ "ping localhost" ]]
+    [[ ! "$SECOND" =~ "ping localhost" ]]
+}
+
+@test "mount-position option" {
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$(env MOUNT_POSITION="/bar/baz" $BECO test foo | grep "docker run")
+
+    [[ "$FIRST" =~ ":/shared" ]]
+    [[ "$SECOND" =~ ":/bar/baz" ]]
+}
+

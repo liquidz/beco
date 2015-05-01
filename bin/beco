@@ -2,7 +2,6 @@
 
 DOCKER=docker
 SESSION_ROOT=$(pwd)
-SHARED_DIR="/shared"
 KILL_FLAG=0
 RM=/bin/rm
 
@@ -119,10 +118,21 @@ if [[ ! -e $DEF_FILE ]]; then
     echo "$CMD is not supported"
     exit 1
 fi
+## 以下の変数を読み込む
+## * $IMAGE
+## * $INTERACTIVE_TTY
+## * $PUBLISH
+## * $COMMAND
+## * $MOUNT_POSITION
 . $DEF_FILE
 
 if [[ "$COMMAND" = "" ]]; then
-    COMMAND="ping localhost"
+    if [[ ! "$NO_COMMAND" = "true" ]]; then
+        COMMAND="ping localhost"
+    fi
+fi
+if [[ "$MOUNT_POSITION" = "" ]]; then
+    MOUNT_POSITION="/shared"
 fi
 
 ## セッションの確認
@@ -151,7 +161,7 @@ fi
 
 ## セッションがなければ作る
 if [[ ! -e $SESSION_FILE ]]; then
-    RUN_CMD="$DOCKER run -d $PUBLISH -v $(pwd):$SHARED_DIR:rw -w $SHARED_DIR $IMAGE $COMMAND"
+    RUN_CMD="$DOCKER run -d $PUBLISH -v $(pwd):$MOUNT_POSITION:rw -w $MOUNT_POSITION $IMAGE $COMMAND"
     if test $DRYRUN; then
         SESSION_CONTAINER="TEST_CONTAINER"
         echo $RUN_CMD

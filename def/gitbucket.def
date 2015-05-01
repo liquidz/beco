@@ -1,18 +1,18 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="beco/heroku"
+    IMAGE="f99aq8ove/gitbucket"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""
 fi
 if [[ "$PUBLISH" = "" ]]; then
-    PUBLISH=""
+    PUBLISH="-p 8080:8080 -p 29418:29418 "
 fi
 if [[ "$COMMAND" = "" ]]; then
     COMMAND=""
 fi
 if [[ "$NO_COMMAND" = "" ]]; then
-    NO_COMMAND=""
+    NO_COMMAND="true"
 fi
 if [[ "$MOUNT_POSITION" = "" ]]; then
-    MOUNT_POSITION=""
+    MOUNT_POSITION="/gitbucket"
 fi

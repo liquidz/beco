@@ -10,3 +10,9 @@ fi
 if [[ "$COMMAND" = "" ]]; then
     COMMAND=""
 fi
+if [[ "$NO_COMMAND" = "" ]]; then
+    NO_COMMAND="true"
+fi
+if [[ "$MOUNT_POSITION" = "" ]]; then
+    MOUNT_POSITION=""
+fi

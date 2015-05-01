@@ -3,7 +3,7 @@
 
 BENRI(Convenient) Commands
 
-current version: 0.0.1
+current version: 0.0.2
 
 ## Requirements
 
@@ -138,6 +138,13 @@ beco vint -v
  * Example
 ```sh
 beco kibana
+```
+
+### gitbucket
+ * Image: [f99aq8ove/gitbucket]()
+ * Example
+```sh
+
 ```
 
 
