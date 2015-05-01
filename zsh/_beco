@@ -33,5 +33,6 @@ __beco_commands() {
             'ansible-playbook' \
             'vint' \
             'kibana' \
+            'gitbucket' \
 
 }
