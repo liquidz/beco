@@ -93,5 +93,13 @@
              :example "beco kibana"
              :publish [9200 5601]
              :command "/usr/share/elasticsearch/bin/elasticsearch"}
+
+            {:name "gitbucket"
+             :image "f99aq8ove/gitbucket"
+             :publish [8080 29418]
+             :no-command true
+             :mount-position "/gitbucket"
+             }
+
             ]
  }

@@ -5,28 +5,31 @@ setup () {
     export_default_env
 }
 
-## -i
-## -c
-## -s
-## commnd def
-## 
-
-#docker run -d -v /Users/uochan/src/github.com/liquidz/beco:/shared:rw -w /shared uochan/bats ping localhost
-#docker exec TEST_CONTAINER bats -v
-
 @test "docker run and exec should be executed" {
-    RES=$($BECO test foo)
-    FIRST=$(echo $RES | grep "docker run")
-    SECOND=$(echo $RES | grep "docker exec")
+    FIRST=$($BECO test foo | grep "docker run")
+    SECOND=$($BECO test foo | grep "docker exec")
 
     [ ! "$FIRST" = "" ]
     [ ! "$SECOND" = "" ]
 }
 
 @test "image should be specified" {
-    RES=$($BECO test foo)
-    FIRST=$(echo $RES | grep "docker run")
-
-    echo $FIRST | grep "test/image:latest" > /dev/null 2>&1
+    RES=$($BECO test foo | grep "docker run")
+    echo $RES | grep "test/image:latest" > /dev/null 2>&1
     [ $? -eq 0 ]
 }
+
+@test "interactive-tty" {
+    FIRST=$(env INTERACTIVE_TTY="" $BECO test foo \
+        | grep "docker exec" | cut -d" " -f3)
+    SECOND=$(env INTERACTIVE_TTY="-it" $BECO test foo \
+        | grep "docker exec" | cut -d" " -f3)
+
+    [ ! "$FIRST" = "-it" ]
+    [ "$SECOND" = "-it" ]
+}
+
+# mount_position 指定
+# no-command 指定
+# publish
+
