@@ -1,7 +1,6 @@
-# beco
-[![Build Status](https://travis-ci.org/liquidz/beco.svg?branch=master)](https://travis-ci.org/liquidz/beco)
+# beco [![Circle CI](https://circleci.com/gh/liquidz/beco.svg?style=svg)](https://circleci.com/gh/liquidz/beco)
 
-BENRI(Convenient) Commands
+BENRI(Convenient) Commands for Docker
 
 current version: $(version)
 
