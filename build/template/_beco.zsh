@@ -18,6 +18,6 @@ __beco_commands() {
     _values \
         'commands' \
 @(for commands)
-            '$(name)' \
+            '$(name)[$(first-line example)]' \
 @(end)
 }

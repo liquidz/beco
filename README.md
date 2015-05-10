@@ -2,7 +2,7 @@
 
 BENRI(Convenient) Commands for Docker
 
-current version: 0.0.2
+current version: 0.0.3
 
 ## Requirements
 
@@ -78,7 +78,7 @@ beco npm -v
 ```
 
 ### redis
- * Image: [redis:2](https://registry.hub.docker.com/_/redis/)
+ * Image: [redis:3](https://registry.hub.docker.com/_/redis/)
  * Example
 ```sh
 beco -i -c redis redis-cli
@@ -95,7 +95,6 @@ beco elasticsearch -v
  * Image: [beco/heroku](https://registry.hub.docker.com/u/uochan/heroku-toolbelt/)
  * Example
 ```sh
-#setup
 echo "FROM uochan/heroku-toolbelt" > Dockerfile
 docker build --rm -t beco/heroku .
 

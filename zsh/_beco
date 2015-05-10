@@ -17,22 +17,22 @@ _beco() {
 __beco_commands() {
     _values \
         'commands' \
-            'go' \
-            'ruby' \
-            'gem' \
-            'irb' \
-            'lein' \
-            'php' \
-            'node' \
-            'npm' \
-            'redis' \
-            'elasticsearch' \
-            'heroku' \
-            'hubot' \
-            'bats' \
-            'ansible-playbook' \
-            'vint' \
-            'kibana' \
-            'gitbucket' \
+            'go[beco go version]' \
+            'ruby[beco ruby -v]' \
+            'gem[beco gem -v]' \
+            'irb[beco irb -v]' \
+            'lein[beco lein version]' \
+            'php[FIXME]' \
+            'node[beco node -v]' \
+            'npm[beco npm -v]' \
+            'redis[beco -i -c redis redis-cli]' \
+            'elasticsearch[beco elasticsearch -v]' \
+            'heroku[echo &quot;FROM uochan/heroku-toolbelt&quot; &gt; Dockerfile]' \
+            'hubot[beco -c hubot npm install]' \
+            'bats[beco bats -v]' \
+            'ansible-playbook[beco ansible-playbook --version]' \
+            'vint[beco vint -v]' \
+            'kibana[beco kibana]' \
+            'gitbucket[beco gitbucket]' \
 
 }
