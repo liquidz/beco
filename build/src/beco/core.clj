@@ -1,7 +1,8 @@
 (ns beco.core
   (:require
     [cuma.core   :as cuma]
-    [clojure.edn :as edn]))
+    [clojure.edn :as edn]
+    cuma.extension.beco))
 
 (def DEFINITION_FILE        "def.edn")
 (def DEF_TEMPLATE_FILE      "template/def.txt")

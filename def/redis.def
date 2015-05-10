@@ -1,5 +1,5 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="redis:2"
+    IMAGE="redis:3"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""

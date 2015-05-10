@@ -1,5 +1,5 @@
 {
- :version "0.0.2"
+ :version "0.0.3"
  :commands [
             ;; official
             {:name "go"
@@ -41,7 +41,7 @@
              :example "beco npm -v"}
 
             {:name "redis"
-             :image "redis:2"
+             :image "redis:3"
              :url "https://registry.hub.docker.com/_/redis/"
              :publish [6379]
              :example "beco -i -c redis redis-cli"
@@ -59,7 +59,7 @@
             {:name "heroku"
              :image "beco/heroku"
              :url "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
-             :example "#setup\necho \"FROM uochan/heroku-toolbelt\" > Dockerfile\ndocker build --rm -t beco/heroku .\n\nbeco -i -c heroku /heroku_login.sh\nbeco heroku apps"}
+             :example "echo \"FROM uochan/heroku-toolbelt\" > Dockerfile\ndocker build --rm -t beco/heroku .\n\nbeco -i -c heroku /heroku_login.sh\nbeco heroku apps"}
 
             {:name "hubot"
              :image "uochan/hubot"
