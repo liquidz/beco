@@ -101,5 +101,14 @@
              :publish [8080 29418]
              :no-command true
              :mount-position "/gitbucket"}
+
+            {:name "mysql"
+             :image "mysql:5"
+             :url "https://hub.docker.com/_/mysql/"
+             :publish [3306]
+             :example "beco mysql -V\nbeco -i mysql -u root --password=secret"
+             :mount-position "/shared -e MYSQL_ROOT_PASSWORD=secret"
+             :no-command true
+             }
             ]
  }

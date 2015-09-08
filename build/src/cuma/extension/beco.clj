@@ -4,4 +4,4 @@
 
 (defn first-line
   [data arg]
-  (-> arg str/split-lines first))
+  {:raw? true :body (-> arg str/split-lines first)})

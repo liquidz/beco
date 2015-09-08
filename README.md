@@ -145,6 +145,14 @@ beco kibana
 beco gitbucket
 ```
 
+### mysql
+ * Image: [mysql:5](https://hub.docker.com/_/mysql/)
+ * Example
+```sh
+beco mysql -V
+beco -i mysql -u root --password=secret
+```
+
 
 
 ## License

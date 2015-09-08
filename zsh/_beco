@@ -27,12 +27,13 @@ __beco_commands() {
             'npm[beco npm -v]' \
             'redis[beco -i -c redis redis-cli]' \
             'elasticsearch[beco elasticsearch -v]' \
-            'heroku[echo &quot;FROM uochan/heroku-toolbelt&quot; &gt; Dockerfile]' \
+            'heroku[echo "FROM uochan/heroku-toolbelt" > Dockerfile]' \
             'hubot[beco -c hubot npm install]' \
             'bats[beco bats -v]' \
             'ansible-playbook[beco ansible-playbook --version]' \
             'vint[beco vint -v]' \
             'kibana[beco kibana]' \
             'gitbucket[beco gitbucket]' \
+            'mysql[beco mysql -V]' \
 
 }

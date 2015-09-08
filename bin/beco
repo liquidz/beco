@@ -163,7 +163,7 @@ fi
 if [[ ! -e $SESSION_FILE ]]; then
     RUN_CMD="$DOCKER run -d $PUBLISH -v $(pwd):$MOUNT_POSITION:rw -w $MOUNT_POSITION $IMAGE $COMMAND"
     if test $DRYRUN; then
-        SESSION_CONTAINER="TEST_CONTAINER"
+        SESSION_CONTAINER="DUMMY_CONTAINER"
         echo $RUN_CMD
     else
         SESSION_CONTAINER=$($RUN_CMD)
