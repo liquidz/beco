@@ -108,7 +108,13 @@
              :publish [3306]
              :example "beco mysql -V\nbeco -i mysql -u root --password=secret"
              :mount-position "/shared -e MYSQL_ROOT_PASSWORD=secret"
-             :no-command true
-             }
+             :no-command true}
+
+            {:name           "asciidoctor-pdf"
+             :image          "asciidoctor/docker-asciidoctor"
+             :url            "https://hub.docker.com/r/asciidoctor/docker-asciidoctor/"
+             :example        "beco asciidoctor-pdf -v"
+             :command        "tail -f /var/log/README"
+             :mount-position "/documents" }
             ]
  }

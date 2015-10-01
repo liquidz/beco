@@ -153,6 +153,13 @@ beco mysql -V
 beco -i mysql -u root --password=secret
 ```
 
+### asciidoctor-pdf
+ * Image: [asciidoctor/docker-asciidoctor](https://hub.docker.com/r/asciidoctor/docker-asciidoctor/)
+ * Example
+```sh
+beco asciidoctor-pdf -v
+```
+
 
 
 ## License
