@@ -1,5 +1,5 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="asciidoctor/docker-asciidoctor"
+    IMAGE="uochan/docker-asciidoctor-jp"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""

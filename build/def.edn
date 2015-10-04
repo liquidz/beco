@@ -112,14 +112,14 @@
 
 
             {:name           "asciidoctor"
-             :image          "asciidoctor/docker-asciidoctor"
-             :url            "https://hub.docker.com/r/asciidoctor/docker-asciidoctor/"
+             :image          "uochan/docker-asciidoctor-jp"
+             :url            "https://hub.docker.com/r/uochan/docker-asciidoctor-jp/"
              :example        "beco asciidoctor -v"
              :command        "tail -f /var/log/README"
              :mount-position "/documents" }
             {:name           "asciidoctor-pdf"
-             :image          "asciidoctor/docker-asciidoctor"
-             :url            "https://hub.docker.com/r/asciidoctor/docker-asciidoctor/"
+             :image          "uochan/docker-asciidoctor-jp"
+             :url            "https://hub.docker.com/r/uochan/docker-asciidoctor-jp/"
              :example        "beco asciidoctor-pdf -v"
              :command        "tail -f /var/log/README"
              :mount-position "/documents" }

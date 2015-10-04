@@ -154,14 +154,14 @@ beco -i mysql -u root --password=secret
 ```
 
 ### asciidoctor
- * Image: [asciidoctor/docker-asciidoctor](https://hub.docker.com/r/asciidoctor/docker-asciidoctor/)
+ * Image: [uochan/docker-asciidoctor-jp](https://hub.docker.com/r/uochan/docker-asciidoctor-jp/)
  * Example
 ```sh
 beco asciidoctor -v
 ```
 
 ### asciidoctor-pdf
- * Image: [asciidoctor/docker-asciidoctor](https://hub.docker.com/r/asciidoctor/docker-asciidoctor/)
+ * Image: [uochan/docker-asciidoctor-jp](https://hub.docker.com/r/uochan/docker-asciidoctor-jp/)
  * Example
 ```sh
 beco asciidoctor-pdf -v
