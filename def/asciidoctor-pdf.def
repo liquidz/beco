@@ -1,0 +1,18 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="asciidoctor/docker-asciidoctor"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH=""
+fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND="tail -f /var/log/README"
+fi
+if [[ "$NO_COMMAND" = "" ]]; then
+    NO_COMMAND=""
+fi
+if [[ "$MOUNT_POSITION" = "" ]]; then
+    MOUNT_POSITION="/documents"
+fi

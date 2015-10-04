@@ -1,0 +1,18 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="mysql:5"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH="-p 3306:3306 "
+fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND=""
+fi
+if [[ "$NO_COMMAND" = "" ]]; then
+    NO_COMMAND="true"
+fi
+if [[ "$MOUNT_POSITION" = "" ]]; then
+    MOUNT_POSITION="/shared -e MYSQL_ROOT_PASSWORD=secret"
+fi

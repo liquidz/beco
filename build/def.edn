@@ -2,84 +2,84 @@
  :version "0.0.3"
  :commands [
             ;; official
-            {:name "go"
-             :image "golang:1.3.3"
-             :url "https://registry.hub.docker.com/_/golang/"
+            {:name    "go"
+             :image   "golang:1.3.3"
+             :url     "https://registry.hub.docker.com/_/golang/"
              :example "beco go version"}
 
-            {:name "ruby"
-             :image "ruby:2.2.0"
-             :url "https://registry.hub.docker.com/_/ruby/"
-             :example "beco ruby -v"}
-            {:name "gem"
-             :image "ruby:2.2.0"
-             :url "https://registry.hub.docker.com/_/ruby/"
-             :example "beco gem -v"}
-            {:name "irb"
-             :image "ruby:2.2.0"
+            {:name            "ruby"
+             :image           "ruby:2.2.0"
+             :url             "https://registry.hub.docker.com/_/ruby/"
+             :example         "beco ruby -v"}
+            {:name            "gem"
+             :image           "ruby:2.2.0"
+             :url             "https://registry.hub.docker.com/_/ruby/"
+             :example         "beco gem -v"}
+            {:name            "irb"
+             :image           "ruby:2.2.0"
              :interactive-tty true
-             :url "https://registry.hub.docker.com/_/ruby/"
-             :example "beco irb -v"}
+             :url             "https://registry.hub.docker.com/_/ruby/"
+             :example         "beco irb -v"}
 
-            {:name "lein"
-             :image "clojure:lein-2.5.0"
-             :url "https://registry.hub.docker.com/_/clojure/"
+            {:name    "lein"
+             :image   "clojure:lein-2.5.0"
+             :url     "https://registry.hub.docker.com/_/clojure/"
              :example "beco lein version\nbeco -i lein repl"}
 
-            {:name "php"
-             :image "php:5.6"
-             :url "https://registry.hub.docker.com/_/php/"
+            {:name    "php"
+             :image   "php:5.6"
+             :url     "https://registry.hub.docker.com/_/php/"
              :example "FIXME"}
 
-            {:name "node"
-             :image "node:0.10"
-             :url "https://registry.hub.docker.com/_/node/"
+            {:name    "node"
+             :image   "node:0.10"
+             :url     "https://registry.hub.docker.com/_/node/"
              :example "beco node -v"}
-            {:name "npm"
-             :image "node:0.10"
-             :url "https://registry.hub.docker.com/_/node/"
+            {:name    "npm"
+             :image   "node:0.10"
+             :url     "https://registry.hub.docker.com/_/node/"
              :example "beco npm -v"}
 
-            {:name "redis"
-             :image "redis:3"
-             :url "https://registry.hub.docker.com/_/redis/"
+            {:name    "redis"
+             :image   "redis:3"
+             :url     "https://registry.hub.docker.com/_/redis/"
              :publish [6379]
              :example "beco -i -c redis redis-cli"
              :command "redis-server"}
 
-            {:name "elasticsearch"
-             :image "elasticsearch:1"
-             :url "https://registry.hub.docker.com/_/elasticsearch/"
-             :publish [9200]
-             :example "beco elasticsearch -v"
+            {:name       "elasticsearch"
+             :image      "elasticsearch:1"
+             :url        "https://registry.hub.docker.com/_/elasticsearch/"
+             :publish    [9200]
+             :example    "beco elasticsearch -v"
              :no-command true
              }
 
             ;; third-party
-            {:name "heroku"
-             :image "beco/heroku"
-             :url "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
+            {:name    "heroku"
+             :image   "beco/heroku"
+             :url     "https://registry.hub.docker.com/u/uochan/heroku-toolbelt/"
              :example "echo \"FROM uochan/heroku-toolbelt\" > Dockerfile\ndocker build --rm -t beco/heroku .\n\nbeco -i -c heroku /heroku_login.sh\nbeco heroku apps"}
 
-            {:name "hubot"
-             :image "uochan/hubot"
-             :url "https://github.com/liquidz/docker-hubot"
+            {:name    "hubot"
+             :image   "uochan/hubot"
+             :url     "https://github.com/liquidz/docker-hubot"
              :example "beco -c hubot npm install\nbeco -i -c hubot bin/hubot"
              :command "redis-server"}
 
-            {:name "bats"
-             :image "uochan/bats"
-             :url "https://github.com/liquidz/docker-bats"
+            {:name    "bats"
+             :image   "uochan/bats"
+             :url     "https://github.com/liquidz/docker-bats"
              :example "beco bats -v"}
 
-            {:name "ansible-playbook"
-             :image "uochan/ansible"
-             :url "https://github.com/liquidz/dockerfile/tree/master/beco/ansible"
+            {:name    "ansible-playbook"
+             :image   "uochan/ansible"
+             :url     "https://github.com/liquidz/dockerfile/tree/master/beco/ansible"
              :example "beco ansible-playbook --version"}
 
-            {:name "vint"
-             :image "uochan/vint"
-             :url "https://github.com/liquidz/docker-vint"
+            {:name    "vint"
+             :image   "uochan/vint"
+             :url     "https://github.com/liquidz/docker-vint"
              :example "beco vint -v"}
 
             ;{:name "themis"
@@ -87,29 +87,36 @@
             ; :url "FIXME"
             ; :example "beco themis -h"}
 
-            {:name "kibana"
-             :image "uochan/kibana"
-             :url "https://github.com/liquidz/docker-kibana"
+            {:name    "kibana"
+             :image   "uochan/kibana"
+             :url     "https://github.com/liquidz/docker-kibana"
              :example "beco kibana"
              :publish [9200 5601]
              :command "/usr/share/elasticsearch/bin/elasticsearch"}
 
-            {:name "gitbucket"
-             :image "f99aq8ove/gitbucket"
-             :url "https://github.com/f99aq8ove/docker-gitbucket"
-             :example "beco gitbucket"
-             :publish [8080 29418]
-             :no-command true
+            {:name           "gitbucket"
+             :image          "f99aq8ove/gitbucket"
+             :url            "https://github.com/f99aq8ove/docker-gitbucket"
+             :example        "beco gitbucket"
+             :publish        [8080 29418]
+             :no-command     true
              :mount-position "/gitbucket"}
 
-            {:name "mysql"
-             :image "mysql:5"
-             :url "https://hub.docker.com/_/mysql/"
-             :publish [3306]
-             :example "beco mysql -V\nbeco -i mysql -u root --password=secret"
+            {:name           "mysql"
+             :image          "mysql:5"
+             :url            "https://hub.docker.com/_/mysql/"
+             :publish        [3306]
+             :example        "beco mysql -V\nbeco -i mysql -u root --password=secret"
              :mount-position "/shared -e MYSQL_ROOT_PASSWORD=secret"
-             :no-command true}
+             :no-command     true}
 
+
+            {:name           "asciidoctor"
+             :image          "asciidoctor/docker-asciidoctor"
+             :url            "https://hub.docker.com/r/asciidoctor/docker-asciidoctor/"
+             :example        "beco asciidoctor -v"
+             :command        "tail -f /var/log/README"
+             :mount-position "/documents" }
             {:name           "asciidoctor-pdf"
              :image          "asciidoctor/docker-asciidoctor"
              :url            "https://hub.docker.com/r/asciidoctor/docker-asciidoctor/"

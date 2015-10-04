@@ -35,6 +35,7 @@ __beco_commands() {
             'kibana[beco kibana]' \
             'gitbucket[beco gitbucket]' \
             'mysql[beco mysql -V]' \
+            'asciidoctor[beco asciidoctor -v]' \
             'asciidoctor-pdf[beco asciidoctor-pdf -v]' \
 
 }
