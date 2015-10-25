@@ -1,0 +1,18 @@
+if [[ "$IMAGE" = "" ]]; then
+    IMAGE="ansible/centos7-ansible"
+fi
+if [[ "$INTERACTIVE_TTY" = "" ]]; then
+    INTERACTIVE_TTY=""
+fi
+if [[ "$PUBLISH" = "" ]]; then
+    PUBLISH=""
+fi
+if [[ "$COMMAND" = "" ]]; then
+    COMMAND=""
+fi
+if [[ "$NO_COMMAND" = "" ]]; then
+    NO_COMMAND=""
+fi
+if [[ "$MOUNT_POSITION" = "" ]]; then
+    MOUNT_POSITION=""
+fi

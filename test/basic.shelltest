@@ -1,0 +1,51 @@
+# setup
+$ export BECOROOT="."
+$ export IGNORE_TO_CHECK_DOCKER=1
+$ export BECO="./bin/beco -d"
+$ export PUBLISH="-p 80:80"
+
+# docker run and exec should be executed
+$ $BECO test foo | grep "docker run"
+$ $BECO test foo | grep "docker exec"
+
+# image should be specified
+$ $BECO test foo | grep "docker run"
+=~ test/image:latest
+
+# interactive-tty option
+$ env INTERACTIVE_TTY="" $BECO test foo \
+        | grep "docker exec"
+!~ -it
+
+$ env INTERACTIVE_TTY="-it" $BECO test foo \
+        | grep "docker exec"
+=~ -it
+
+# publish option
+$ $BECO test foo | grep "docker run" \
+        | grep $PUBLISH
+!= 0
+$ env PUBLISH="$PUBLISH " $BECO test foo \
+        | grep "docker run" | grep $PUBLISH
+
+# command option
+$ $BECO test foo | grep "docker run"
+=~ ping localhost
+$ $BECO test foo | grep "docker run"
+!~ bar baz
+$ env COMMAND="bar baz" $BECO test foo | grep "docker run"
+!~ ping localhost
+$ env COMMAND="bar baz" $BECO test foo | grep "docker run"
+=~ bar baz
+
+# no-command option
+$ $BECO test foo | grep "docker run"
+=~ ping localhost
+$ env NO_COMMAND="true" $BECO test foo | grep "docker run"
+!~ ping localhost
+
+# mount-position option
+$ $BECO test foo | grep "docker run"
+=~ :/shared
+$ env MOUNT_POSITION="/bar/baz" $BECO test foo | grep "docker run"
+=~ :/bar/baz
