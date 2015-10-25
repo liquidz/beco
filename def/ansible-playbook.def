@@ -1,5 +1,5 @@
 if [[ "$IMAGE" = "" ]]; then
-    IMAGE="uochan/ansible"
+    IMAGE="ansible/centos7-ansible"
 fi
 if [[ "$INTERACTIVE_TTY" = "" ]]; then
     INTERACTIVE_TTY=""

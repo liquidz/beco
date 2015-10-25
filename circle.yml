@@ -1,6 +1,7 @@
 dependencies:
   pre:
-    - git clone https://github.com/sstephenson/bats.git
+    - wget -O shelltest https://github.com/liquidz/shelltest/releases/download/v0.1.1/shelltest_linux_amd64
+    - chmod +x shelltest
 test:
   override:
-    - bats/bin/bats --tap test/suites
+    - make test

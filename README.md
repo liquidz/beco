@@ -167,6 +167,20 @@ beco asciidoctor -v
 beco asciidoctor-pdf -v
 ```
 
+### ansible-playbook
+ * Image: [ansible/centos7-ansible](https://hub.docker.com/r/ansible/centos7-ansible/)
+ * Example
+```sh
+beco ansible-playbook --version
+```
+
+### ansible-galaxy
+ * Image: [ansible/centos7-ansible](https://hub.docker.com/r/ansible/centos7-ansible/)
+ * Example
+```sh
+beco ansible-galaxy --version
+```
+
 
 
 ## License

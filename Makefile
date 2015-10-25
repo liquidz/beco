@@ -4,7 +4,7 @@ def/version.def: build/def.edn
 .PHONY: test clean
 
 test:
-	beco bats --tap test/suites
+	shelltest test/*.shelltest
 
 clean:
 	/bin/rm -f def/*

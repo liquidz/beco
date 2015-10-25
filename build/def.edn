@@ -123,5 +123,14 @@
              :example        "beco asciidoctor-pdf -v"
              :command        "tail -f /var/log/README"
              :mount-position "/documents" }
+
+            {:name            "ansible-playbook"
+             :image           "ansible/centos7-ansible"
+             :url             "https://hub.docker.com/r/ansible/centos7-ansible/"
+             :example         "beco ansible-playbook --version"}
+            {:name            "ansible-galaxy"
+             :image           "ansible/centos7-ansible"
+             :url             "https://hub.docker.com/r/ansible/centos7-ansible/"
+             :example         "beco ansible-galaxy --version"}
             ]
  }

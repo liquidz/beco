@@ -37,5 +37,7 @@ __beco_commands() {
             'mysql[beco mysql -V]' \
             'asciidoctor[beco asciidoctor -v]' \
             'asciidoctor-pdf[beco asciidoctor-pdf -v]' \
+            'ansible-playbook[beco ansible-playbook --version]' \
+            'ansible-galaxy[beco ansible-galaxy --version]' \
 
 }
