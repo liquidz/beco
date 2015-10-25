@@ -2,7 +2,7 @@
 
 BENRI(Convenient) Commands for Docker
 
-current version: 0.0.3
+current version: 0.0.4
 
 ## Requirements
 

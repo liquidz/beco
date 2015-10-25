@@ -4,4 +4,4 @@ dependencies:
     - chmod +x shelltest
 test:
   override:
-    - make test
+    - ./shelltest test/*.shelltest
