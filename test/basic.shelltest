@@ -2,7 +2,6 @@
 $ export BECOROOT="."
 $ export IGNORE_TO_CHECK_DOCKER=1
 $ export BECO="./bin/beco -d"
-$ export PUBLISH="-p 80:80"
 
 # docker run and exec should be executed
 $ $BECO test foo | grep "docker run"
@@ -22,11 +21,11 @@ $ env INTERACTIVE_TTY="-it" $BECO test foo \
 =~ -it
 
 # publish option
-$ $BECO test foo | grep "docker run" \
-        | grep $PUBLISH
-!= 0
-$ env PUBLISH="$PUBLISH " $BECO test foo \
-        | grep "docker run" | grep $PUBLISH
+$ $BECO test foo | grep "docker run"
+!~ -p 80:80
+$ env PUBLISH="-p 80:80 " $BECO test foo \
+        | grep "docker run"
+=~ -p 80:80
 
 # command option
 $ $BECO test foo | grep "docker run"
